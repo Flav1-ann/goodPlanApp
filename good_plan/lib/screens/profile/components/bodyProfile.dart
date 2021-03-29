@@ -30,7 +30,8 @@ class _BodyProfileState extends State<BodyProfile> {
     return Form(
         key: _formKey,
         child: SingleChildScrollView(
-          child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+          child: Column(mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
             Container(
                 /*decoration: BoxDecoration(
                   gradient: LinearGradient(

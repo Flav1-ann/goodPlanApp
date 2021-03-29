@@ -3,11 +3,15 @@ import 'models/Product.dart';
 import 'package:test1/screens/home/home_screen.dart';
 import 'package:test1/screens/profile/profile_screen.dart';
 import 'package:test1/screens/sellProduct/sell_screen.dart';
+import 'package:test1/screens/auth/components/authentification.dart';
+import 'package:test1/screens/auth/components/register.dart';
+import 'package:test1/screens/auth/components/forgottenPassWord.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(loggin());
 
 // #docregion MyApp
-class MyApp extends StatelessWidget {
+class BodyApp extends StatelessWidget {
+
   // #docregion build
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class MyApp extends StatelessWidget {
           length: 4,
             child: Scaffold(
             appBar: AppBar(
-              title: Text("MY APPBAR"),
+              title: Text("Good Plan Student"),
               centerTitle: true,
               flexibleSpace: Container(
                 decoration: BoxDecoration(
@@ -53,4 +57,20 @@ class MyApp extends StatelessWidget {
       style: TextStyle(fontSize: 28),
     ),
   );
+}
+class loggin extends StatelessWidget {
+  // #docregion build
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'GoodPlan',
+        routes: {
+          '/': (context) => LoginScreen(),
+          '/body': (context) => BodyApp(),
+          '/forgottenPassWord': (context) => ForgottenPassWord(),
+          '/register': (context) => Register(),
+        },
+        initialRoute: '/',
+    );
+  }
 }
