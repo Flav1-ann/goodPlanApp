@@ -2,6 +2,10 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:test1/models/Product.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 ///Class qui permet de modifier la page pricipal "ACCUEIL"
 class BodySell extends StatefulWidget {
@@ -23,6 +27,22 @@ class _BodySellState extends State<BodySell> {
         _image = image;
       });
     }
+
+    List data;
+    Future<String> getData() async {
+      var response = await http.get(
+          Uri.encodeFull("http://192.168.1.22:8027/goodplan/api/Product/findAll"),
+          headers: {
+            "Accept": "application/json"
+          }
+      );
+      data = json.decode(response.body);
+      print(data[0]);
+
+
+      return "Success!";
+    }
+
 
     return SingleChildScrollView(
       child: Column(
@@ -121,7 +141,10 @@ class _BodySellState extends State<BodySell> {
                           color: Colors.green,
                           padding: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 115.0),
-                          onPressed: () => {},
+                          onPressed: () => {
+                            print("Vendre"),
+                            getData(),
+                          },
                           child: Text(
                             "Vendre".toUpperCase(),
                             style: TextStyle(
